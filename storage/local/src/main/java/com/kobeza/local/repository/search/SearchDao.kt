@@ -10,9 +10,9 @@ import com.kobeza.local.data.SearchLocal
 @Dao
 interface SearchDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun save(item: SearchLocal)
 
-    @Query("SELECT * FROM SearchLocal")
+    @Query("SELECT * FROM SearchLocal ORDER BY timestamp DESC")
     fun getSearchHistory(): LiveData<List<SearchLocal>>
 }

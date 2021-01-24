@@ -16,7 +16,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField 'String', 'BASE_URL', '"https://pixabay.com/api/"'
+        buildConfigField 'String', 'BASE_URL', '"https://pixabay.com/"'
         buildConfigField 'String', 'AUTH_KEY', '"20006020-fccb5b605b9fd174391b42b21"'
     }
 

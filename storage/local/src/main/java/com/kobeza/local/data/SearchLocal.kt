@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class SearchLocal(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    @PrimaryKey
     val imageUrl: String,
-    val query: String
+    val query: String,
+    val timestamp: Long = System.currentTimeMillis()
 )

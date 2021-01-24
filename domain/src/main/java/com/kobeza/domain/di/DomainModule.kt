@@ -14,6 +14,6 @@ object DomainModule {
         import(RemoteModule.get())
         import(LocalModule.get())
 
-        bind() from provider { SearchInteractor(instance()) }
+        bind() from provider { SearchInteractor(instance(), instance()) }
     }
 }

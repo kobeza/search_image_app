@@ -9,6 +9,6 @@ import retrofit2.http.Query
 
 interface SearchImageApi {
 
-    @GET()
+    @GET("api/")
     fun searchImageByQueryAsync(@Query("q") query: String): Deferred<Response<DataWrapper<List<SearchImageResponse>>?>>
 }
