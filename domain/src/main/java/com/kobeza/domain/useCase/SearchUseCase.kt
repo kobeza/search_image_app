@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.kobeza.domain.data.entity.SearchEntity
 
 interface SearchUseCase {
-    suspend fun searchImageByQuery(query:String)
+    suspend fun searchImageByQuery(query: String)
 
-    fun getAllImage(): LiveData<SearchEntity>
+    fun getAllImage(): LiveData<List<SearchEntity>>
 }

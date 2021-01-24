@@ -1,25 +1,35 @@
 package com.kobeza.domain.useCase
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.kobeza.domain.data.entity.SearchEntity
+import com.kobeza.domain.ext.toEntity
+import com.kobeza.domain.ext.toLocal
 import com.kobeza.remote.data.response.SearchImageResponse
 import com.kobeza.remote.repository.search.SearchRepository
 
 class SearchInteractor(
-    private val searchRepositoryRemote: SearchRepository
+    private val searchRepositoryRemote: SearchRepository,
+    private val searchRepositoryLocal: com.kobeza.local.repository.search.SearchRepository
 ) : SearchUseCase {
 
     override suspend fun searchImageByQuery(query: String) {
         searchRepositoryRemote.searchImageByQuery(query)?.let {
-            saveSearchHistoryToDb(query, it)
+            saveSearchHistoryItemToDb(query, it)
         }
     }
 
-    override fun getAllImage(): LiveData<SearchEntity> {
-        TODO("Not yet implemented")
+    override fun getAllImage(): LiveData<List<SearchEntity>> {
+        return Transformations.map(searchRepositoryLocal.getSearchHistory()) {
+            it.map { it.toEntity() }
+        }
     }
 
-    private suspend fun saveSearchHistoryToDb(query: String, list: List<SearchImageResponse>) {
-
+    private suspend fun saveSearchHistoryItemToDb(query: String, list: List<SearchImageResponse>) {
+        list.firstOrNull()?.let {
+            it.toLocal(query).let {
+                searchRepositoryLocal.save(it)
+            }
+        }
     }
 }
