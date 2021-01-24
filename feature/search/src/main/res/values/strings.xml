@@ -1,0 +1,5 @@
+<resources>
+    <string name="search">Search</string>
+    <string name="error_message_oops_something_went_wrong">Oops, something went wrong!</string>
+    <string name="error_message_nothing_found">Nothing found!</string>
+</resources>
