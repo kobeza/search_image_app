@@ -1,0 +1,7 @@
+include ':app',
+        ':core',
+        ':domain',
+        ':storage:local',
+        ':storage:remote',
+        ':feature:search'
+rootProject.name = "Search Image"
